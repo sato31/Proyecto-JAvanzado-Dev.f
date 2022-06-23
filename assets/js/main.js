@@ -12,7 +12,8 @@ const getData = () => {
         .then(data => console.log(data))
         .catch(error => console.error(error));
 }
-
+/*##################### WE GET THE DATA FROM API FOR PAGINATION
+AND WE RENDER THE FIRST BLOCK OF PAGES####################### */
 const getPagination = ()=>{
     fetch(URL)
         .then(response => response.json())
@@ -29,7 +30,7 @@ const getPagination = ()=>{
 getData();
 getPagination();
 
-
+/*##################### FUNCTION THAT ALLOWS US TO RENDER ####################### */
 const renderPagination = (startPage, endPage) => {
     cleanPages();
     /*##################### BUTTON START PAGES####################### */
@@ -71,6 +72,7 @@ const renderPagination = (startPage, endPage) => {
     divPagination.appendChild(divEndPages);
 }
 
+/*################FUNCTION THAT ALLOWS US TO TAKE US TO THE FIRST PAGE############## */
 const startPages =()=>{
     startPagesRender = blockPagesRender - (blockPagesRender-1);
             endPagesRender = blockPagesRender;
@@ -79,6 +81,8 @@ const startPages =()=>{
             removeCssPreviusPageActive();
             addCssNewPageActive();
 }
+
+/*#############FUNCTION THAT ALLOWS US TO ADVANCE FROM ONE PAGE TO A PAGE############ */
 const nextPage = () => {
     if(currentPage <totalPages){
         changePage(++currentPage);
@@ -91,6 +95,7 @@ const nextPage = () => {
     
 }
 
+/*#################FUNCTION THAT ALLOWS US TO SELECT A SPECIFIC PAGE################ */
 const selectPage = (event) => {
     const divPage = event.target;
     currentPage = divPage.dataset.page;
@@ -107,6 +112,7 @@ const changePage = (page) => {
     //currentPage = page;
 }
 
+/*##############FUNCTION THAT ALLOWS US TO RETURN FROM ONE PAGE TO A PAGE############## */
 const prevPage = () => {
     if(currentPage > 1){
         changePage(--currentPage);
@@ -118,7 +124,7 @@ const prevPage = () => {
     removeCssPreviusPageActive();
     addCssNewPageActive();
 }
-
+/*################FUNCTION THAT ALLOWS US TO TAKE US TO THE LAST PAGE############## */
 const endPages =()=>{
     startPagesRender = totalPages -(blockPagesRender-1);
     endPagesRender = totalPages;
@@ -127,16 +133,15 @@ const endPages =()=>{
     removeCssPreviusPageActive();
     addCssNewPageActive();
 }
-
+/*#################WE REMOVE THE CSS OF THE BUTTON OR PAGE PREVIOUSLY ACTIVE################### */
 const removeCssPreviusPageActive = ()=>{
     const previusPageActive = Array.from(divPagination.childNodes).find(page => page.classList.contains('page-active'));
-    console.log(previusPageActive);
     previusPageActive.classList.remove('page-active');
     previusPageActive.classList.add('page');
 }
 
+/* #################WE ADD THE CSS OF THE NEW BUTTON OR ACTIVE PAGE################ */
 const addCssNewPageActive = ()=>{
-    console.log(currentPage);
     const newPageActive = Array.from(divPagination.childNodes).find(page => page.dataset.page == currentPage);
     console.log(newPageActive);
     newPageActive.classList.remove('page');
