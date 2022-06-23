@@ -10,18 +10,25 @@ let endPagesRender = 0;
 let blockPagesRender = 0; 
 const divPagination = document.getElementById('pagination')
 
-const getLastEpisode = (lastEpURL) =>{
-    fetch(lastEpURL)
-        .then(response => response.json())
-        /** MODIFICAR */
-        // .then(response => console.log(response.name))
-        .catch(error => console.error(error))
-};
+// const getLastEpisode = (lastEpURL) =>{
+//     fetch(lastEpURL)
+//         .then(response => response.json())
+//         /** MODIFICAR */
+//         // .then(response => console.log(response.name))
+//         .catch(error => console.error(error))
+// };
 
 const getData = ()=>{
-    fetch(URL)
+    fetch(URL) //Llama la api
+        //guarda la respuesta en un .json
         .then(response => response.json())
         .then(data => normalizeData(data))
+        // .then (characters => console.log(characters)
+        //     // characters.forEach(element=> {
+        //     //     console.log(element.last_episode)
+        //     //     // fetch()
+        //     // })
+        // )
         /**
          * MODFICAR THEN CHARACTERS
          */
@@ -38,7 +45,22 @@ const getData = ()=>{
 
 const normalizeData = (data) => {
     characters = [];
+    //for each que recorre elementos del arreglo data.results
     data.results.forEach(element => {
+        // let episodios = element.episode
+        // // for que recorre elementos del arreglo episodios
+        //     element.last_episode = (episodios[episodios.length-1])
+        // let lastEpisodeURL = element.last_episode
+        // // console.log(lastEpisodeURL);
+        // fetch(lastEpisodeURL)
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         // console.log(response.name)
+        //         element.lastEpisodeName = response.name
+        //         console.log(element);
+        //         //AGREGAR CODIGO PARA QUE PINTE LA PARTE DE LAST EPISODE
+                
+        //     })
         const { image, name, status, species, type, gender, origin, episode, id} = element;
         const character = {
             photo: image,
@@ -53,7 +75,7 @@ const normalizeData = (data) => {
         }
         characters.push(character);
     });
-    // console.log(characters);
+    console.log(characters);
     return characters
 };
 
@@ -153,7 +175,7 @@ const renderCard = (element) => {
 
     //Agregamos texto a los elementos que lo requieren sin usar la api
     h5Origin.innerHTML = 'Origin: '
-    h5LastEpisode.innerHTML = 'Last Episode: '
+    h5LastEpisode.innerHTML = 'Watch last episode'
     h4IdLabel.innerHTML = 'ID: '
 
     //Se pinta cada card con los elementos dinámicos
@@ -164,8 +186,9 @@ const renderCard = (element) => {
     h4Type.innerHTML = tipo
     h4Gender.innerHTML = gender
     h4Origin.innerHTML = origin
-    h4LastEpisode.innerHTML = last_episode
+    // h4LastEpisode.innerHTML = last_episode
     h4IdNumber.innerHTML = id
+    
 }
 
 /*##################### WE GET THE DATA FROM API FOR PAGINATION
@@ -328,3 +351,14 @@ const addCssNewPageActive = ()=>{
 const cleanPages =()=>{
     divPagination.innerHTML = '';
 }
+
+cardContainer.addEventListener('click', (event) =>{
+    if (event.target.innerHTML === 'Watch last episode' ){
+        let getID = event.path[2].lastChild.lastChild.innerHTML
+        let lastEpisodeURL = characters[getID].last_episode
+        console.log(lastEpisodeURL);
+        //fetch(lastEpisodeURL)
+            //.then()
+            //.catch
+    }
+})
