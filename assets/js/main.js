@@ -1,15 +1,34 @@
 let characters = [];
 const cardContainer = document.querySelector('.card-container')
+const searchCharacter = document.querySelector('.search')
 
 let URL = 'https://rickandmortyapi.com/api/character';
 
+const getLastEpisode = (lastEpURL) =>{
+    fetch(lastEpURL)
+        .then(response => response.json())
+        /** MODIFICAR */
+        // .then(response => console.log(response.name))
+        .catch(error => console.error(error))
+};
+
 const getData = ()=>{
     fetch(URL)
-    .then(response => response.json())
-    .then(data => normalizeData(data))
-    .then(characters => getLastEpisode(characters))
-    .catch(error => console.error(error))
+        .then(response => response.json())
+        .then(data => normalizeData(data))
+        /**
+         * MODFICAR THEN CHARACTERS
+         */
+        // .then(characters => {
+        //     characters.forEach(character => {
+        //         let lastEpURL = character.last_episode
+        //         getLastEpisode(lastEpURL)
+        //     });
+        // })
+        .then(characters => characters.forEach(renderCard))
+        .catch(error => console.error(error))
 };
+
 
 const normalizeData = (data) => {
     data.results.forEach(element => {
@@ -27,25 +46,13 @@ const normalizeData = (data) => {
         }
         characters.push(character);
     });
+    // console.log(characters);
     return characters
 };
 
-const getLastEpisode = (characters) =>{
-    characters.forEach(episode => {
-        fetch(episode.last_episode)
-        .then(response => response.json())
-        .then(data => episode.last_episode = data.name)
-    });
-    console.log(characters);
-    return characters
-};
-
-getData();
-getData();
-
-
-const renderCard = () => {
+const renderCard = (element) => {
     
+    // console.log(element.last_episode);
     //Creamos todos los elementos de la tarjeta
     const divCard = document.createElement('div')
     const divImage = document.createElement('div')
@@ -60,15 +67,15 @@ const renderCard = () => {
     const h3Specie = document.createElement('h3')
     const divTypeGender = document.createElement('div')
     const divType = document.createElement('div')
-    const h3Type = document.createElement('h3')
+    const h4Type = document.createElement('h4')
     const divGender = document.createElement('div')
-    const h3Gender = document.createElement('h3')
+    const h4Gender = document.createElement('h4')
     const divOrigin = document.createElement('div')
     const h5Origin = document.createElement('h5')
-    const h3Origin = document.createElement('h3')
+    const h4Origin = document.createElement('h4')
     const divLastEpisode = document.createElement('div')
     const h5LastEpisode = document.createElement('h5')
-    const h3LastEpisode = document.createElement('h3')
+    const h4LastEpisode = document.createElement('h4')
     const divID = document.createElement('div')
     const h4IdLabel = document.createElement('h4')
     const h4IdNumber = document.createElement('h4')
@@ -87,15 +94,15 @@ const renderCard = () => {
     divSpecie.appendChild(h3Specie)
     divInfo.appendChild(divTypeGender)
     divTypeGender.appendChild(divType)
-    divType.appendChild(h3Type)
+    divType.appendChild(h4Type)
     divTypeGender.appendChild(divGender)
-    divGender.appendChild(h3Gender)
+    divGender.appendChild(h4Gender)
     divInfo.appendChild(divOrigin)
     divOrigin.appendChild(h5Origin)
-    divOrigin.appendChild(h3Origin)
+    divOrigin.appendChild(h4Origin)
     divInfo.appendChild(divLastEpisode)
     divLastEpisode.appendChild(h5LastEpisode)
-    divLastEpisode.appendChild(h3LastEpisode)
+    divLastEpisode.appendChild(h4LastEpisode)
     divInfo.appendChild(divID)
     divID.appendChild(h4IdLabel)
     divID.appendChild(h4IdNumber)
@@ -109,7 +116,7 @@ const renderCard = () => {
     h1Name.classList.add('name-h1')
     divStateSpecie.classList.add('state-specie-div')
     divStatus.classList.add('status-div')
-    //h3Status se queda pendiente para hacerlo con condiciones
+    //h3Status despues del destructuring
     divSpecie.classList.add('specie-div')
     divTypeGender.classList.add('type_gender-div')
     divType.classList.add('type-div')
@@ -120,14 +127,57 @@ const renderCard = () => {
     h5LastEpisode.classList.add('label')
     divID.classList.add('id-div')
 
+    // Destructuring de los elementos a utilizar del arreglo characters
+    // (Para no escribir el prefijo element. en cada elemento del arreglo)
+    const { photo, name, status, specie, tipo, gender, origin, last_episode, id} = element;
+    // const lastEpisode = characters.lastEpisode
+
+    //Asignación de atributos html
+    img.setAttribute('src', photo)
+
+    //Se añade una clase distinta de acuerdo al status 
+    if (status === 'Dead'){
+        h3Status.classList.add('status-dead')
+    } else if (status === 'Alive'){
+        h3Status.classList.add('status-alive')
+    }else if (status === 'unknown'){
+        h3Status.classList.add('status-unknown')
+    }
+
     //Agregamos texto a los elementos que lo requieren sin usar la api
     h5Origin.innerHTML = 'Origin: '
     h5LastEpisode.innerHTML = 'Last Episode: '
     h4IdLabel.innerHTML = 'ID: '
+
+    //Se pinta cada card con los elementos dinámicos
+    img.innerHTML = photo
+    h1Name.innerHTML = name
+    h3Status.innerHTML = status
+    h3Specie.innerHTML = specie
+    h4Type.innerHTML = tipo
+    h4Gender.innerHTML = gender
+    h4Origin.innerHTML = origin
+    h4LastEpisode.innerHTML = last_episode
+    h4IdNumber.innerHTML = id
 }
 
-renderCard()
-renderCard()
-renderCard()
-renderCard()
-renderCard()
+const cleanView = () => {
+    cardContainer.innerHTML ='';
+};
+
+searchCharacter.addEventListener('keyup', (event) => {
+    const inputText = event?.target?.value.toLocaleLowerCase() || '';
+    cleanView();
+    const charactersFounded = searchingWithFilter(inputText);
+    charactersFounded.forEach(renderCard);
+});
+
+const searchingWithFilter = (searchingText) => {
+    const charactersFounded = characters.filter(character => {
+        const nombre = character.name;
+        return (nombre.toLocaleLowerCase()).includes(searchingText)
+    });
+    return charactersFounded;
+};
+
+getData();
