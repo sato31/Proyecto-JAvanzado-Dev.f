@@ -3,12 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
-h2, h3, h4, h5{
+
+h2,
+h3,
+h4,
+h5 {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     text-align: center;
 }
-nav{
+
+nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -17,10 +22,12 @@ nav{
     width: 100%;
     padding: 0% 10%;
 }
-.logo{
+
+.logo {
     max-width: 20%;
 }
-.search{
+
+.search {
     background-color: #0B8E87;
     border-radius: 7px;
     border-color: #FFE609;
@@ -29,27 +36,32 @@ nav{
     color: white;
     text-align: center;
 }
+
 ::placeholder {
     color: white;
     text-align: center;
     padding-left: 5px;
-  }
+}
+
 .card-container {
     width: 90%;
-    margin:0 auto;
+    margin: 0 auto;
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(510px, 1fr));
     grid-auto-rows: minmax(250px, auto);
     gap: 30px;
     grid-auto-flow: dense;
-  }@media (max-width: 50px) {
+}
+
+@media (max-width: 50px) {
     .card-container {
         width: 50%;
     }
-  }
-.card{
-    display:flex;
+}
+
+.card {
+    display: flex;
     justify-content: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -61,33 +73,37 @@ nav{
     box-shadow: 0px 0px 15px 1px #FFE609;
     transition: transform 0.3s ease-in-out;
 }
+
 .card:hover {
     filter: opacity(0.95);
     transform: scale(1.05);
-  }
-.image-div{
+}
+
+.image-div {
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 25px 0px 0px 25px;
     width: 45%;
 }
-.image{
+
+.image {
     border-radius: 5%;
     width: 90%;
     height: 90%;
 }
 
-.info-div{
+.info-div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 0px 25px 25px 0px;
     width: 55%;
-    background-color: #0B8E87 ;
+    background-color: #0B8E87;
 }
-.name-div{
+
+.name-div {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -95,19 +111,22 @@ nav{
     width: 100%;
     height: 25%;
 }
-.name-h1{
+
+.name-h1 {
     font-family: Arial, Helvetica, sans-serif;
     /* margin-bottom: 5px; */
     color: #F49301;
     -webkit-text-stroke: 0.5px black;
     height: 93%
 }
-.state-specie-div{
+
+.state-specie-div {
     display: flex;
     width: 100%;
     height: 15%;
 }
-.status-div{
+
+.status-div {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -115,25 +134,29 @@ nav{
     width: 50%;
     height: 100%;
 }
-.status-dead{
+
+.status-dead {
     /* -webkit-text-stroke: 1px red; */
     background-color: #a50101;
     padding: 3px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
-.status-alive{
+
+.status-alive {
     /* -webkit-text-stroke: 1px red; */
     background-color: #25ac03;
     padding: 3px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
-.status-unknown{
+
+.status-unknown {
     /* -webkit-text-stroke: 1px red; */
     background-color: #616361;
     padding: 3px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
-.specie-div{
+
+.specie-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,12 +164,14 @@ nav{
     width: 50%;
     height: 100%;
 }
-.type_gender-div{
+
+.type_gender-div {
     display: flex;
     width: 100%;
     height: 15%;
 }
-.type-div{
+
+.type-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,7 +179,8 @@ nav{
     width: 50%;
     height: 100%;
 }
-.gender-div{
+
+.gender-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,19 +188,23 @@ nav{
     width: 50%;
     height: 100%;
 }
-.origin-div, .last-episode-div{
+
+.origin-div,
+.last-episode-div {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 15%;
-    padding: 0px 10px ;
+    padding: 0px 10px;
     /* border: solid black 1px; */
 }
-.label{
+
+.label {
     width: 25%;
 }
-.id-div{
+
+.id-div {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -182,4 +212,42 @@ nav{
     height: 15%;
     padding-right: 15px;
     /* border: solid black 1px; */
+}
+
+.pagination {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px 35px;
+}
+
+.page {
+    display: flex;
+    width: 30px;
+    height: 40px;
+    left: 280px;
+    top: 859px;
+    background: #0B8E87;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    color: azure;
+    cursor: pointer;
+}
+
+.page-active{
+    display: flex;
+    width: 30px;
+    height: 40px;
+    left: 280px;
+    top: 859px;
+    background: #9fcb02;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    color: azure;
+    cursor: pointer;
 }
