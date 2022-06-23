@@ -116,7 +116,6 @@ const changePage = (page) => {
 const prevPage = () => {
     if(currentPage > 1){
         changePage(--currentPage);
-        console.log(currentPage);
         if(currentPage<startPagesRender){
             renderPagination(--startPagesRender,--endPagesRender);
         }
@@ -143,7 +142,6 @@ const removeCssPreviusPageActive = ()=>{
 /* #################WE ADD THE CSS OF THE NEW BUTTON OR ACTIVE PAGE################ */
 const addCssNewPageActive = ()=>{
     const newPageActive = Array.from(divPagination.childNodes).find(page => page.dataset.page == currentPage);
-    console.log(newPageActive);
     newPageActive.classList.remove('page');
     newPageActive.classList.add('page-active');
 }
