@@ -10,13 +10,27 @@ let endPagesRender = 0;
 let blockPagesRender = 0; 
 const divPagination = document.getElementById('pagination')
 
-const getLastEpisode = (lastEpURL) =>{
-    fetch(lastEpURL)
+const getLastEpisode = () =>{
+    fetch(URL)
         .then(response => response.json())
-        /** MODIFICAR */
-        // .then(response => console.log(response.name))
+        .then(personajes => {
+            personajes.episode[episode.length-1]
+            personajes.results.forEach(element => {
+                fetch(`${element.ultimaAparicion}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let nameEpisode = data.name
+                        console.log(nameEpisode);
+                        return nameEpisode
+                    })
+                    .catch(error => console.error(error))
+            })
+        })
         .catch(error => console.error(error))
 };
+const nombreEpisodio = () => {
+    
+}
 
 const getData = ()=>{
     fetch(URL)
@@ -36,7 +50,7 @@ const getData = ()=>{
 };
 
 
-const normalizeData = (data) => {
+const normalizeData = (data,nameEpisode) => {
     characters = [];
     data.results.forEach(element => {
         const { image, name, status, species, type, gender, origin, episode, id} = element;
@@ -48,7 +62,7 @@ const normalizeData = (data) => {
             tipo: type,
             gender: gender,
             origin: origin.name,
-            last_episode: episode[episode.length-1],
+            last_episode: nameEpisode,
             id : id,
         }
         characters.push(character);
