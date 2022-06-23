@@ -1,0 +1,154 @@
+#modal {
+    background: rgba(66, 68, 67, 0.589);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: all .5s;
+  }
+  
+  #modal .card-modal {
+    width: 80%;
+    height: 90%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background:#0B8E87;
+    border-radius: 15px;
+    text-align: center;
+  
+    -webkit-box-shadow: -1px -4px 15px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px -4px 15px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px -4px 15px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  #modal .card-modal .modal-header{
+    width: 100%;
+    height: 20%;
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #modal .card-modal .modal-header .close-modal{
+    height: 15%;
+    width: 20px;
+    align-self: flex-end;
+    margin-right: 10px;
+    color: #0B8E87 ;
+    cursor: pointer;
+  }
+
+  #modal .card-modal .modal-header .title{
+    height: 60%;
+    align-self: flex-start;
+    margin-left: 10px;
+  }
+
+  #modal .card-modal .modal-header .title h3{
+    font-size: 30px;
+    color: #F49301;
+  }
+
+  #modal .card-modal .modal-header .info{
+    height: 25%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #modal .card-modal .modal-header .info .code-episode{
+    width: 50%;
+    display: flex;
+    padding-left: 10px;
+  }
+
+  .info .code-episode h5{
+    font-size: 18px;
+    color:#0B8E87;
+  }  
+
+  .info .code-episode label{
+    font-size: 18px;
+    font-weight: 600;
+    color: #F49301;
+  }
+
+  #modal .card-modal .modal-header .info .created-episode{
+    width: 50%;
+    display: flex;
+  }
+
+  .info .created-episode h5{
+    font-size: 18px;
+    color:#0B8E87;
+  }  
+
+  .info .created-episode label{
+    font-size: 18px;
+    font-weight: 600;
+    color: #F49301;
+    
+  }
+
+  #modal .card-modal .body{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #modal .card-modal .body .title{
+    height: 20%;
+    margin: 0px 10px 0px 10px;
+  }
+  #modal .card-modal .body .title h4{
+    padding-top: 10px;
+    text-align: start;
+    font-size: 25px;
+  }
+
+  #modal .card-modal .body .content{
+    width: 100%;
+  height: 100%;
+  padding-top: 10px;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 10px;
+  justify-content: center;
+  align-items: center;
+  }
+
+  /*ESTYLE SCROLL MODAL LYRICS FOR MOTORS WEBKIT Y BLINK (CHROME, SAFARI, OPERA...)*/
+
+
+
+  #modal .card-modal .body .content .character{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #modal .card-modal .body .content .character .imagen-character{
+
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: solid 2px white;
+  }
+
+  #modal .card-modal .body .content .character .imagen-character img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  
+  
+
+

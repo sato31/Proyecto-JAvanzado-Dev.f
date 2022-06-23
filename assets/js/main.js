@@ -328,3 +328,5 @@ const addCssNewPageActive = ()=>{
 const cleanPages =()=>{
     divPagination.innerHTML = '';
 }
+
+const openModal=()=>{}
