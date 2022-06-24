@@ -122,10 +122,6 @@
   align-items: center;
   }
 
-  /*ESTYLE SCROLL MODAL LYRICS FOR MOTORS WEBKIT Y BLINK (CHROME, SAFARI, OPERA...)*/
-
-
-
   #modal .card-modal .body .content .character{
     width: 100px;
     height: 100px;
@@ -147,6 +143,52 @@
     height: auto;
     border-radius: 50%;
   }
+
+   /* Media Query for Mobile Devices */
+   @media (max-width: 480px) {
+    #modal .card-modal .body .content .character{
+      width: 50px;
+      height: 50px;
+    }
+  
+    #modal .card-modal .body .content .character .imagen-character{
+  
+      width: 40px;
+      height: 40px;
+    }
+  
+    #modal .card-modal .body .content .character .imagen-character img{
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+    }
+    #modal .card-modal .body .content .character label{
+      font-size: 10px;
+    } 
+    }
+  
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 800px) {
+  #modal .card-modal .body .content .character{
+    width: 70px;
+    height: 70px;
+  }
+
+  #modal .card-modal .body .content .character .imagen-character{
+
+    width: 50px;
+    height: 50px;
+  }
+
+  #modal .card-modal .body .content .character .imagen-character img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  #modal .card-modal .body .content .character label{
+    font-size: 12px;
+  }  
+}
 
   
   

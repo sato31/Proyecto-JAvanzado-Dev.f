@@ -51,7 +51,6 @@ const renderHeaderModal = (element) =>{
 }
 
 const renderBodyModal = (element)=>{
-    console.log(element)
      const divCharacter = document.createElement('div'); 
      const divImagenCharacter = document.createElement('div');
      const imagenCharacter = document.createElement('img');
@@ -72,7 +71,6 @@ const getContentEpisode = (Episode)=>{
     .then(response => response.json())
     .then(data =>{
         renderHeaderModal(data);
-        renderTitleContentModal();
         data.characters.forEach((element, index )=> {
             if(index >=0 && index <=25){
                 fetch(element)
@@ -86,15 +84,6 @@ const getContentEpisode = (Episode)=>{
     .catch(error  => console.error(error))
 }
 
-const renderTitleContentModal = ()=>{
-    const divTitle = document.createElement('div');
-    const h4DivTitle = document.createElement('h4');
-    divTitle.classList.add('title');
-    h4DivTitle.innerHTML = "Characters"
-    divTitle.appendChild(h4DivTitle);
-    bodyModal.insertBefore(divTitle,contentBodyModal);
-    
-}
 
 const cleanContentModal = ()=>{
     headerModal.innerHTML = '';
