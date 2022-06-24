@@ -355,10 +355,15 @@ const cleanPages =()=>{
 cardContainer.addEventListener('click', (event) =>{
     if (event.target.innerHTML === 'Watch last episode' ){
         let getID = event.path[2].lastChild.lastChild.innerHTML
-        let lastEpisodeURL = characters[getID].last_episode
-        console.log(lastEpisodeURL);
-        //fetch(lastEpisodeURL)
-            //.then()
-            //.catch
+        console.log(getID);
+        characters.forEach(element => {
+            if (element.id == getID){
+                let lastEpisodeURL = element.last_episode
+                console.log(lastEpisodeURL)
+                //fetch(lastEpisodeURL)
+                    //.then()
+                    //.catch
+            }           
+        });
     }
 })
