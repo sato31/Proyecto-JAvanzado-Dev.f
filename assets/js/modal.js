@@ -72,7 +72,7 @@ const getContentEpisode = (Episode)=>{
     .then(response => response.json())
     .then(data =>{
         renderHeaderModal(data);
-        renderTitleContentModal();
+        // renderTitleContentModal();
         data.characters.forEach((element, index )=> {
             if(index >=0 && index <=25){
                 fetch(element)

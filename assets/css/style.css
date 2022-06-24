@@ -251,3 +251,18 @@ nav {
     color: azure;
     cursor: pointer;
 }
+
+h5:hover{
+    color: #FFE609;
+    cursor: pointer;
+}
+
+#Estados{
+    background-color: #0B8E87;
+    border-color: #FFE609;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    width: 100px;
+    height: 100%;
+}

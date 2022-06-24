@@ -16,7 +16,16 @@
     <div class="logo-div">
       <img class="logo" src="./assets/img/logo.png" alt="logo">
     </div>
-    <input class="search" type="search" placeholder="Search character">
+    <div class="search-selector">
+      <input class="search" type="search" placeholder="Search character">
+      <select name="Selector de estados" id="Estados">
+        <option value="None" selected>Estados</option>
+        <option value="Dead">Dead</option>
+        <option value="Alive">Alive</option>
+        <option value="unknown">unknown</option>
+      </select>
+    </div>
+    <!-- <input class="search" type="search" placeholder="Search character"> -->
   </nav>
 
   <main class="card-container">
@@ -68,6 +77,9 @@
         
       </div>
       <div class="body" id="modal-body">
+        <div class="title">
+          <h4>Characters</h4>
+        </div>
           <div class="content" id="content-body-modal">
         </div>
       </div>

@@ -365,3 +365,15 @@ cardContainer.addEventListener('click', (event) =>{
         });
     };
 });
+
+const select = document.querySelector('#Estados')
+
+select.addEventListener('change',(event)=>{
+    const estados = event?.target?.value || ''
+    const nuevoRender = characters.filter( (element) => {
+        const diedAlive = element.status
+        return diedAlive.includes(estados)
+    })
+    cleanView()
+    nuevoRender.forEach(renderCard)
+})
