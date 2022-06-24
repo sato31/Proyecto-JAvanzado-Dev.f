@@ -204,6 +204,14 @@ nav {
     width: 25%;
 }
 
+.label:hover{
+    cursor: pointer;
+    color: #ffbb00;
+
+}
+
+
+
 .id-div {
     display: flex;
     justify-content: flex-end;
