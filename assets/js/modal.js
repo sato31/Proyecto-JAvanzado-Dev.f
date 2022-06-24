@@ -4,7 +4,6 @@ const bodyModal = document.getElementById('modal-body');
 const contentBodyModal = document.getElementById('content-body-modal');
 
 const closeModal =() =>{
-    console.log("cerrando..");
     modal.style.top = '-100vh';
     cleanContentModal();
 }
@@ -102,7 +101,8 @@ const cleanContentModal = ()=>{
     contentBodyModal.innerHTML = '';
 }
     
-
-    getContentEpisode("https://rickandmortyapi.com/api/episode/28");
-
+const openModal =(URL)=>{
+    modal.style.top = '0';
+    getContentEpisode(URL);
+}
 
