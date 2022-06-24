@@ -29,9 +29,9 @@ nav {
 
 .search {
     background-color: #0B8E87;
-    border-radius: 7px;
+    border-radius: 10px;
     border-color: #FFE609;
-    height: 20px;
+    height: 30px;
     width: 125px;
     color: white;
     text-align: center;
@@ -258,4 +258,13 @@ nav {
     justify-content: center;
     color: azure;
     cursor: pointer;
+}
+#Estados{
+    background-color: #0B8E87;
+    border-color: #FFE609;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    width: 100px;
+    height: 30px;
 }
