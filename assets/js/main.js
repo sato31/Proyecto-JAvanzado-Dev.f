@@ -1,6 +1,7 @@
 let characters = [];
 const cardContainer = document.querySelector('.card-container')
 const searchCharacter = document.querySelector('.search')
+const select = document.querySelector('#Estados')
 
 let URL = 'https://rickandmortyapi.com/api/character';
 let currentPage = 1;
@@ -14,9 +15,20 @@ const divPagination = document.getElementById('pagination')
 //     fetch(lastEpURL)
 //         .then(response => response.json())
 //         /** MODIFICAR */
-//         // .then(response => console.log(response.name))
+        // .then(response => console.log(response.name))
 //         .catch(error => console.error(error))
 // };
+
+//Filtro por selector
+select.addEventListener('change',(event)=>{
+    const estados = event?.target?.value || ''
+    const nuevoRender = characters.filter( (element) => {
+        const diedAlive = element.status
+        return diedAlive.includes(estados)
+    })
+    cleanView()
+    nuevoRender.forEach(renderCard)
+})
 
 const getData = ()=>{
     fetch(URL) //Llama la api
@@ -24,10 +36,10 @@ const getData = ()=>{
         .then(response => response.json())
         .then(data => normalizeData(data))
         // .then (characters => console.log(characters)
-        //     // characters.forEach(element=> {
-        //     //     console.log(element.last_episode)
-        //     //     // fetch()
-        //     // })
+            // characters.forEach(element=> {
+            //     console.log(element.last_episode)
+                // fetch()
+            // })
         // )
         /**
          * MODFICAR THEN CHARACTERS
@@ -43,22 +55,22 @@ const getData = ()=>{
 };
 
 
-const normalizeData = (data) => {
+const normalizeData = (data,nameEpisode) => {
     characters = [];
     //for each que recorre elementos del arreglo data.results
     data.results.forEach(element => {
         // let episodios = element.episode
-        // // for que recorre elementos del arreglo episodios
+        // for que recorre elementos del arreglo episodios
         //     element.last_episode = (episodios[episodios.length-1])
         // let lastEpisodeURL = element.last_episode
-        // // console.log(lastEpisodeURL);
+        // console.log(lastEpisodeURL);
         // fetch(lastEpisodeURL)
         //     .then(response => response.json())
         //     .then(response => {
-        //         // console.log(response.name)
+                // console.log(response.name)
         //         element.lastEpisodeName = response.name
         //         console.log(element);
-        //         //AGREGAR CODIGO PARA QUE PINTE LA PARTE DE LAST EPISODE
+                //AGREGAR CODIGO PARA QUE PINTE LA PARTE DE LAST EPISODE
                 
         //     })
         const { image, name, status, species, type, gender, origin, episode, id} = element;
@@ -70,7 +82,7 @@ const normalizeData = (data) => {
             tipo: type,
             gender: gender,
             origin: origin.name,
-            last_episode: episode[episode.length-1],
+            last_episode: nameEpisode,
             id : id,
         }
         characters.push(character);
@@ -355,10 +367,14 @@ const cleanPages =()=>{
 cardContainer.addEventListener('click', (event) =>{
     if (event.target.innerHTML === 'Watch last episode' ){
         let getID = event.path[2].lastChild.lastChild.innerHTML
-        let lastEpisodeURL = characters[getID].last_episode
-        openModal(lastEpisodeURL);
-        //fetch(lastEpisodeURL)
-            //.then()
-            //.catch
-    }
-})
+        console.log(getID);
+        characters.forEach(element => {
+            if (element.id == getID){
+                let lastEpisodeURL = element.last_episode
+                console.log(lastEpisodeURL);
+                openModal(lastEpisodeURL);
+                console.log(lastEpisodeURL)
+            } ;          
+        });
+    };
+});
