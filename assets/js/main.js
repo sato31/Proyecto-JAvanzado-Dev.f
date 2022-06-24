@@ -359,11 +359,9 @@ cardContainer.addEventListener('click', (event) =>{
         characters.forEach(element => {
             if (element.id == getID){
                 let lastEpisodeURL = element.last_episode
+                openModal(lastEpisodeURL);
                 console.log(lastEpisodeURL)
-                //fetch(lastEpisodeURL)
-                    //.then()
-                    //.catch
-            }           
+            } ;          
         });
-    }
-})
+    };
+});
