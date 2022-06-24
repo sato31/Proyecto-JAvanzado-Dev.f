@@ -15,20 +15,9 @@ const divPagination = document.getElementById('pagination')
 //     fetch(lastEpURL)
 //         .then(response => response.json())
 //         /** MODIFICAR */
-        // .then(response => console.log(response.name))
+//         // .then(response => console.log(response.name))
 //         .catch(error => console.error(error))
 // };
-
-//Filtro por selector
-select.addEventListener('change',(event)=>{
-    const estados = event?.target?.value || ''
-    const nuevoRender = characters.filter( (element) => {
-        const diedAlive = element.status
-        return diedAlive.includes(estados)
-    })
-    cleanView()
-    nuevoRender.forEach(renderCard)
-})
 
 const getData = ()=>{
     fetch(URL) //Llama la api
@@ -36,10 +25,10 @@ const getData = ()=>{
         .then(response => response.json())
         .then(data => normalizeData(data))
         // .then (characters => console.log(characters)
-            // characters.forEach(element=> {
-            //     console.log(element.last_episode)
-                // fetch()
-            // })
+        //     // characters.forEach(element=> {
+        //     //     console.log(element.last_episode)
+        //     //     // fetch()
+        //     // })
         // )
         /**
          * MODFICAR THEN CHARACTERS
@@ -55,22 +44,22 @@ const getData = ()=>{
 };
 
 
-const normalizeData = (data,nameEpisode) => {
+const normalizeData = (data) => {
     characters = [];
     //for each que recorre elementos del arreglo data.results
     data.results.forEach(element => {
         // let episodios = element.episode
-        // for que recorre elementos del arreglo episodios
+        // // for que recorre elementos del arreglo episodios
         //     element.last_episode = (episodios[episodios.length-1])
         // let lastEpisodeURL = element.last_episode
-        // console.log(lastEpisodeURL);
+        // // console.log(lastEpisodeURL);
         // fetch(lastEpisodeURL)
         //     .then(response => response.json())
         //     .then(response => {
-                // console.log(response.name)
+        //         // console.log(response.name)
         //         element.lastEpisodeName = response.name
         //         console.log(element);
-                //AGREGAR CODIGO PARA QUE PINTE LA PARTE DE LAST EPISODE
+        //         //AGREGAR CODIGO PARA QUE PINTE LA PARTE DE LAST EPISODE
                 
         //     })
         const { image, name, status, species, type, gender, origin, episode, id} = element;
@@ -82,7 +71,7 @@ const normalizeData = (data,nameEpisode) => {
             tipo: type,
             gender: gender,
             origin: origin.name,
-            last_episode: nameEpisode,
+            last_episode: episode[episode.length-1],
             id : id,
         }
         characters.push(character);
@@ -370,7 +359,8 @@ cardContainer.addEventListener('click', (event) =>{
         console.log(getID);
         characters.forEach(element => {
             if (element.id == getID){
-                let lastEpisodeURL = element.last_episode
+                
+                const lastEpisodeURL = element.last_episode
                 console.log(lastEpisodeURL);
                 openModal(lastEpisodeURL);
                 console.log(lastEpisodeURL)
@@ -378,3 +368,15 @@ cardContainer.addEventListener('click', (event) =>{
         });
     };
 });
+
+
+
+select.addEventListener('change',(event)=>{
+    const estados = event?.target?.value || ''
+    const nuevoRender = characters.filter( (element) => {
+        const diedAlive = element.status
+        return diedAlive.includes(estados)
+    })
+    cleanView()
+    nuevoRender.forEach(renderCard)
+})
